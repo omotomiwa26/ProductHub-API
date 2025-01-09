@@ -77,7 +77,7 @@ DB_URI=your_database_uri
 
 4: Install dependencies
 
-`npm install express bcryptjs jsonwentoken mongoose body-parser ejs dotenv nodemailer nodemon cors`
+`npm install express bcryptjs jsonwebtoken mongoose body-parser ejs dotenv nodemailer nodemon cors`
 
 5: Start the application
 
