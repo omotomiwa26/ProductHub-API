@@ -56,7 +56,7 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: 'Invalid Email Or Password, Please Try Again With Valid Credentials' });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_SECRET_EXPIRY });
     res.json({ token });
   } catch (error) {
     res.status(500).json({ error: error.message });
