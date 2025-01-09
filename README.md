@@ -85,7 +85,7 @@ DB_URI=your_database_uri
 
 ## API EndPoints Base URL
 
-[ProductHub-API](https://budgetly-psi.vercel.app/)
+[ProductHub-API](https://producthub-api.onrender.com)
 
 ## Postman Documentation
 

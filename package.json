@@ -8,6 +8,7 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.3",
+    "node": "^22.13.0",
     "nodemailer": "^6.9.16",
     "nodemon": "^3.1.9"
   },
@@ -22,7 +23,6 @@
   "author": "",
   "license": "ISC",
   "description": "A RESTful API for a Product Listing And Management System with user authentication, profile management, and product management.",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/omotomiwa26/ProductHub-API.git"
