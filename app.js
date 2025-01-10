@@ -1,22 +1,26 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const authRoutes = require('./routes/auth');
-const profileRoutes = require('./routes/profile');
-const productRoutes = require('./routes/product');
+const express = require("express");
+const path = require("path");
+const bodyParser = require("body-parser");
+const authRoutes = require("./routes/auth");
+const profileRoutes = require("./routes/profile");
+const productRoutes = require("./routes/product");
+const cors = require("cors");
 
 const app = express();
 app.use(bodyParser.json());
-app.set('view engine', 'ejs');
+app.use(cors());
 
+app.use(express.static(path.join(__dirname, "public")));
+app.set("view engine", "ejs");
 
 // home route
-app.get('/api', (req, res) => {
-    res.send('<h1 style="color: Gold";> WELCOME TO ProductHub-API!</h1>');
+app.get("/", (req, res) => {
+  res.render("landingPage");
 
-// Use All Routes
-app.use('/api', authRoutes);
-app.use('/api', profileRoutes);
-app.use('/api', productRoutes);
+  // Use All Routes
+  app.use("/api/v1", authRoutes);
+  app.use("/api/v1", profileRoutes);
+  app.use("/api/v1", productRoutes);
 });
 
 module.exports = app;

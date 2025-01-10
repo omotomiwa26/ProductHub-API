@@ -5,14 +5,73 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <Welcome>
-    </title>
+    <title>ProductHub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #28a745;            
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header img {
+            width: 100px;
+        }
+        .content {
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Hello, <%= username %>!</h1>
-    <p>Thank You For Signing Up On ProductHub-API.</p>
+    <div class="container">
+        <div class="header">
+            <img src="../producthublogo.jpg" alt="ProductHub Logo">
+            <h1>Welcome to ProductHub!</h1>
+            <p>Your one-stop solution for managing and listing products effortlessly.</p>
+        </div>
+        <div class="content">
+            <h1>Hello, <%= username %>!</h1>
+            <p>Thank you for signing up on ProductHub. We are excited to have you on board!</p>
+            <p>With ProductHub, you can easily manage and list your products with just a few clicks.</p>
+            <p>If you have any questions or need assistance, feel free to reach out to our support team.</p>
+        </div>
+        <div class="footer">
+            &copy; 2025 ProductHub. All rights reserved.<br>
+            Follow us on 
+            <a href="" style="color:#28a745;">Twitter</a> | 
+            <a href="" style="color:#28a745;">Facebook</a> | 
+            <a href="" style="color:#28a745;">Instagram</a>
+        </div>
+    </div>
 </body>
 
 </html>
