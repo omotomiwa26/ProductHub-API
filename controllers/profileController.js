@@ -5,23 +5,58 @@ const bcrypt = require('bcryptjs');
 exports.getUserProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.userId).select('-password');
-    res.json(user);
+    
+    if (!user) {
+      return res.status(404).json({
+        status: "Not Found",
+        statusCode: 404,
+        error: "No User Found",
+      });
+    }
+
+    res.status(200).json({
+      status: "Success",
+      statusCode: 200,
+      message: "User's Profile Retrieved Successfully",
+      user: {
+          Username: user.username,
+          Email: user.email,
+        },
+      });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error Retrieving User's Profile: ", error);
+      res.status(500).json({
+        status: "Internal Server Error",
+        statusCode: 500,
+        message: `Failed To Retrieve User's Profile: ${error.message}`,
+      });
   }
 };
 
 // Update user profile
 exports.updateUserProfile = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({
+      status: "Bad Request",
+      statusCode: 400,
+      error: "Please Input All Required Fields",
+    });
+  }
+
   try {
     const user = await User.findById(req.user.userId);
-    if (!user) return res.status(404).json({ message: 'User Not Found' });
 
-    const oldUsername = user.username;
+    if (!user) {
+      return res.status(404).json({
+        status: "Not Found",
+        statusCode: 404, 
+        message: 'User Not Found', 
+      });
+    }
 
     user.username = username || user.username;
-    user.email = email || user.email;
 
     if (password) {
       user.password = await bcrypt.hash(password, 10);
@@ -29,9 +64,18 @@ exports.updateUserProfile = async (req, res) => {
 
     await user.save();
 
-    res.json({ message: `User '${oldUsername}' Profile Updated Successfully` });
+    res.status(200).json({
+      status: "Success",
+      statusCode: 200, 
+      message: `User Profile Updated Successfully` 
+    });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error Updating User's Profile: ", error);
+      res.status(500).json({
+        status: "Internal Server Error",
+        statusCode: 500,
+        message: `Failed To Update User's Profile: ${error.message}`,
+      });
   }
 };
 
@@ -39,10 +83,26 @@ exports.updateUserProfile = async (req, res) => {
 exports.deleteUserProfile = async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.user.userId);
-    if (!user) return res.status(404).json({ message: 'User Not Found' });
 
-    res.json({ message: `User '${user.username}' Profile Deleted Successfully` });
+    if (!user) {
+      return res.status(404).json({
+        status: "Not Found",
+        statusCode: 404, 
+        message: 'User Not Found', 
+      });
+    }
+
+    res.json({ 
+      status: "Success",
+      statusCode: 200, 
+      message: `User's Profile Deleted Successfully` 
+    });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error Deleting User's Profile: ", error);
+      res.status(500).json({
+        status: "Internal Server Error",
+        statusCode: 500,
+        error: `Failed To Delete User's Profile: ${error.message}` ,
+      });
   }
 };
