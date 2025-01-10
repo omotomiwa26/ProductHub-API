@@ -9,7 +9,7 @@ This includes RESTful API endpoints for registering users, authenticating users,
 ## Project Structure
 
 ```md
-/book-management-system
+/ProductHub-API
 │
 ├── /views                   # EJS templates
 │   └── welcomeEmail.ejs     # Welcome email template
@@ -48,6 +48,7 @@ This includes RESTful API endpoints for registering users, authenticating users,
 - Express.js
 - MongoDB
 - JWT for Authentication
+- Nodemailer
 
 ## Setup and Installation
 
