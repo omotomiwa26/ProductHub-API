@@ -1,4 +1,8 @@
-# Product Listing And Management System(ProductHub-API)
+# ProductHub-API
+
+![ProductHub-API LOGO](https://github.com/omotomiwa26/ProductHub-API/blob/tree/main/public/producthublogo.jpg?raw=true)
+
+## Product Listing And Management System
 
 A RESTful API for a Product Listing And Management System with user authentication, profile management, and product management.
 
@@ -13,25 +17,31 @@ This includes RESTful API endpoints for registering users, authenticating users,
 │
 ├── /views                   # EJS templates
 │   └── welcomeEmail.ejs     # Welcome email template
+|   ├── landingPage.ejs      # Landing page template
 ├── /routes                  # Express routes
 │   ├── auth.js              # Authentication routes (register, login)
 │   ├── profile.js           # Profile management routes
-│   └── books.js             # Book management routes
+│   └── product.js           # Product management routes
+├── /public                  # Static Files
+│   ├── producthublogo.jpg   # Product Hub logo 
+|   ├── productHub-API.png   # ERD diagram  
 ├── /controllers             # Route handlers
 │   ├── authController.js    # Handles user registration, login, etc.
 │   ├── profileController.js # Handles profile RUD operations
-│   └── bookController.js    # Handles book CRUD operations
+│   └── productController.js # Handles product CRUD operations
 ├── /models                  # Database models and schema
 │   ├── userModel.js         # User model
-│   └── bookModel.js         # Book model
+│   └── productModel.js      # Product model
 ├── /middlewares             # Protect admin routes
 │   ├── authMiddleware.js    # Authenticate add, delete and update endpoints     
 ├── /config                  # Configuration files
-│   └── db.js                # Database connection setup
+│   └── database.js          # Database connection setup
 ├── .env                     # Stores environment variables
 ├── package-lock.json        # Project metadata
-├── package.json             # Project metadata and dependencies
-├── server.js                # server entry point
+├── package.json             # Project metadata and dependencies 
+├── LICENSE                  # Project license file
+├── AUTHORS                  # Lists all project contributors
+├── server.js                # Server entry point
 ├── README.md                # Setup guide and documentation
 └── app.js                   # Main application setup
 ```
@@ -41,6 +51,7 @@ This includes RESTful API endpoints for registering users, authenticating users,
 - User authentication and authorization
 - User profile management(updating and deletion)
 - Product management(adding, listing, updating, deletion)
+- Registration mail
 
 ## Technologies
 
@@ -90,10 +101,8 @@ DB_URI=your_database_uri
 
 ## Postman Documentation
 
-[Postman Endpoints Documentation](https://documenter.getpostman.com/view/38698911/2sAYJ1mi48)
+[ProductHub-API Postman Documentation](https://documenter.getpostman.com/view/38698911/2sAYJ1mi48)
 
 ## Entity Relationship Diagram
 
-[ProductHub-API ERD](https://dbdiagram.io/d/Budgetly-Personal-Finance-Manager-676f2b225406798ef7caaf45)
-
-![ProductHub-API ERD](https://github.com/CaptainSani/personal-finance-manager/blob/main/Budgetly.png?raw=true)
+![ProductHub-API ERD](https://github.com/omotomiwa26/ProductHub-API/blob/tree/main/public/productHub-API.png?raw=true)
