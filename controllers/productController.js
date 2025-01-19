@@ -1,4 +1,4 @@
-const Book = require("../models/productsModel");
+const Product = require("../models/productsModel");
 
 // Add a new product
 exports.addProduct = async (req, res) => {
