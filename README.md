@@ -1,6 +1,10 @@
 # ProductHub-API
 
+<div align="center">
+
 ![ProductHub-API LOGO](https://github.com/omotomiwa26/ProductHub-API/blob/main/public/producthublogo.jpg?raw=true)
+
+</div>
 
 ## Product Listing And Management System
 
@@ -105,4 +109,4 @@ DB_URI=your_database_uri
 
 ## Entity Relationship Diagram
 
-![ProductHub-API ERD](https://github.com/omotomiwa26/ProductHub-API/main/public/productHub-API.png?raw=true)
+![ProductHub-API ERD](https://github.com/omotomiwa26/ProductHub-API/blob/main/public/productHub-API.png?raw=true)
