@@ -26,9 +26,8 @@ const userSchema = new mongoose.Schema({
         `${props.value} is too short! Your password must be 6 or more characters.`,
     },
   },
-  created_at: { type: Date, default: Date.now },
-  updated_at: { type: Date, default: Date.now },
-});
+},
+  { timestamps: true });
 
 // Hash password before saving the user
 userSchema.pre("save", async function (next) {
