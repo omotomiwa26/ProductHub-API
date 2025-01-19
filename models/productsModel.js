@@ -8,10 +8,9 @@ const productSchema = new mongoose.Schema({
   category: { type: String },
   quantity: { type: Number, required: true },
   imageUrl: { type: String },
-  created_at: { type: Date, default: Date.now },
-  updated_at: { type: Date, default: Date.now },
   owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
-});
+},
+  { timestamps: true });
 
 
 //Creating Products model from products schema
