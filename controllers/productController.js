@@ -1,4 +1,4 @@
-const Book = require('../models/productsModel');
+const Book = require("../models/productsModel");
 
 // Add a new product
 exports.addProduct = async (req, res) => {
@@ -9,21 +9,21 @@ exports.addProduct = async (req, res) => {
       status: "Success",
       statusCode: 200,
       message: "Product Added Succesfully",
-      product
+      product,
     });
   } catch (error) {
     console.error("Error Adding Product: ", error);
-      res.status(500).json({
-        status: "Internal Server Error",
-        statusCode: 500,
-        message: `Failed To Add Product: ${error.message}`,
-      });
+    res.status(500).json({
+      status: "Internal Server Error",
+      statusCode: 500,
+      message: `Failed To Add Product: ${error.message}`,
+    });
   }
 };
 
 // List all products with optional filtering
 exports.listAllProducts = async (req, res) => {
-  const { name, category, price } = req.query; 
+  const { name, category, price } = req.query;
   const query = {};
 
   if (name) query.name = name;
@@ -31,22 +31,25 @@ exports.listAllProducts = async (req, res) => {
   if (price) query.price = { $gte: price };
 
   try {
-    const products = await Product.find(query).where('owner').equals(req.user.userId);
+    const products = await Product.find(query)
+      .where("owner")
+      .equals(req.user.userId);
     res.status(200).json({
       status: "Success",
       statusCode: 200,
       message: "Products Listed Succesfully",
-      products
+      products,
     });
   } catch (error) {
     console.error("Error Listing Products: ", error);
-      res.status(500).json({
-        status: "Internal Server Error",
-        statusCode: 500,
-        message: `Failed To List Products: ${error.message}`,
-});
-}
+    res.status(500).json({
+      status: "Internal Server Error",
+      statusCode: 500,
+      message: `Failed To List Products: ${error.message}`,
+    });
+  }
 };
+
 // List a single product by ID
 exports.listProductById = async (req, res) => {
   try {
@@ -54,17 +57,23 @@ exports.listProductById = async (req, res) => {
     if (!product || product.owner.toString() !== req.user.userId) {
       return res.status(404).json({
         status: "Not Found",
-        statusCode: 404, 
-        message: 'Product Not Found', 
+        statusCode: 404,
+        message: "Product Not Found",
       });
     }
     res.status(200).json({
       status: "Success",
-      statusCode: 200, 
-      message: `User Profile Updated Successfully` 
+      statusCode: 200,
+      message: `Product Retrieved Successfully`,
+      product,
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error Retrieving Product: ", error);
+    res.status(500).json({
+      status: "Internal Server Error",
+      statusCode: 500,
+      message: `Failed To Retrieve Product: ${error.message}`,
+    });
   }
 };
 
@@ -73,14 +82,27 @@ exports.updateProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     if (!product || product.owner.toString() !== req.user.userId) {
-      return res.status(404).json({ message: 'Product Not Found' });
+      return res.status(404).json({
+        status: "Not Found",
+        statusCode: 404,
+        message: "Product Not Found",
+      });
     }
 
-    Object.assign(product, req.body); // Update fields with new data
+    Object.assign(product, req.body);
     await product.save();
-    res.json(product);
+    res.status(200).json({
+      status: "Success",
+      statusCode: 200,
+      message: `Product Updated Successfully`,
+    });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error Updating Product: ", error);
+    res.status(500).json({
+      status: "Internal Server Error",
+      statusCode: 500,
+      message: `Failed To Update Profile: ${error.message}`,
+    });
   }
 };
 
@@ -89,12 +111,24 @@ exports.deleteProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     if (!product || product.owner.toString() !== req.user.userId) {
-      return res.status(404).json({ message: 'Product Not Found' });
+      return res.status(404).json({
+        status: "Not Found",
+        statusCode: 404,
+        message: "Product Not Found",
+      });
     }
 
     await Product.findByIdAndDelete(req.params.id);
-    res.json({ message: `Product '${product.name}' Deleted Successfully` }); // Use name instead of title
+    res.json({
+      status: "Success",
+      statusCode: 200,
+      message: `Product Deleted Successfully`,
+    });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({
+      status: "Internal Server Error",
+      statusCode: 500,
+      error: `Failed To Delete Product: ${error.message}`,
+    });
   }
 };
