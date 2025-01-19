@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
   res.render("landingPage");
 
   // Use All Routes
-  app.use("/api/v1", authRoutes);
+  app.use("/api/auth/v1", authRoutes);
   app.use("/api/v1", profileRoutes);
   app.use("/api/v1", productRoutes);
 });
