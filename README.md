@@ -105,7 +105,7 @@ DB_URI=your_database_uri
 
 ## Postman Documentation
 
-[ProductHub-API Postman Documentation](https://documenter.getpostman.com/view/38698911/2sAYJ1mi48)
+[ProductHub-API Postman Documentation](https://documenter.getpostman.com/view/38698911/2sAYQdiVJc)
 
 ## Entity Relationship Diagram
 
