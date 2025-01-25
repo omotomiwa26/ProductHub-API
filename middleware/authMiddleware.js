@@ -4,7 +4,7 @@ const authenticate = (req, res, next) => {
   const authHeader = req.header("Authorization");
   if (!authHeader)
     return res.status(401).json({
-      status: "Unathorrized",
+      status: "Unauthorized",
       statusCode: 401,
       message: "Access Denied: Please Insert Bearer Token",
     });
@@ -12,7 +12,7 @@ const authenticate = (req, res, next) => {
   const token = authHeader.split(" ")[1];
   if (!token)
     return res.status(401).json({
-      status: "Unathorrized",
+      status: "Unauthorized",
       statusCode: 401,
       message: "Access Denied: Please Use Valid Bearer Token",
     });
@@ -23,7 +23,7 @@ const authenticate = (req, res, next) => {
     next();
   } catch (error) {
     res.status(401).json({
-      status: "Unathorrized",
+      status: "Unauthorized",
       statusCode: 401,
       message: "Sorry, Bearer Token Is Invalid",
     });
